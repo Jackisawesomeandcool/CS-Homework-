@@ -79,6 +79,7 @@ public class Gradebook {
         // You are *not* required to implement this method.
         throw new UnsupportedOperationException(
             "indexOfMin is provided by the staff at grading time");
+
     }
 
     /**
@@ -91,9 +92,13 @@ public class Gradebook {
      *     the values of scores[n-k..n] are unspecified
      */
     public static void dropLowest(int[] scores, int n, int k) {
-        // TODO: implement this method to meet the specification above.
-        // You must call indexOfMin() given above.
-        throw new RuntimeException("dropLowest is not implemented yet");
+        for(int i = 0; i < k; i++) {
+            int minIndex = indexOfMin(scores, 0, n - i);
+            int temp = scores[minIndex];
+            scores[minIndex] = scores[n - 1 - i];
+            scores[n - 1 - i] = temp;
+        }
+        scores = java.util.Arrays.copyOf(scores, n - k); 
     }
 
     /**
@@ -122,12 +127,35 @@ public class Gradebook {
             "computeCourseGrades is provided by the staff at grading time");
     }
 
+    public static void fail(String msg) {
+        System.err.println(msg);
+        System.exit(1);
+    }
+
     public static void main(String[] args) {
-        // TODO: implement this method to meet the specification above.
+        String outfile = null;
+        String filename = null;
+
+        for (int i = 0; i < args.length; i++) {
+            String arg = args[i];
+            if (arg.equals("-o")) {
+                i++;
+                outfile = args[i];
+            } else if (arg.startsWith("-")) {
+                fail("unknown option: " + arg);
+            } else if (filename == null) {
+                filename = arg;
+            } else {
+                fail("too many file arguments: " + arg);
+            }
+
+        }
+
+
         throw new RuntimeException("main is not implemented yet");
 
 
-        // Hint: refer to Histogram.java to see how to handle command line
+        // Hint:  command line
         // options, parse a CSV file, validate inputs, and write outputs to a
         // file or stdout depending on whether an output file was given.
     }

@@ -1,5 +1,33 @@
 import java.io.*;
 
+
+
+/**
+ * 
+ * Histogram is a program that reads a CSV file and produces a histogram of the values in a specified column.
+ *  The user can specify the number of bins, the width of the histogram, and an output file for the results. 
+ * The program handles various command-line arguments and provides error messages for invalid input.
+ * 
+ * Usage:  java Histogram [options] <csv_file> 
+ * 
+ * command line arguments:
+ * --bins <number> : specifies the number of bins for the histogram (default is 10)
+ * --column <number> : specifies the column index(ex: ) (0-based) to histogram (default is 0) 
+ * --width <number> : specifies the maximum width of the histogram bars (default is 40)
+ * -o <filename> : specifies an output file to write the histogram
+ * 
+ * @requires: column >= 0 && bins > 0 && width > 0
+ * 
+* printHistogram: prints the histogram to the specified output stream,
+*   showing the range of each bin and the count of values in that bin 
+* @param counts An array of counts for each bin.
+* @param lo The lower bound of the data range.
+* @param hi The upper bound of the data range.
+* @param label The label for the histogram (usually the column name).
+* @param total The total number of values in the dataset.
+* @param maxBarWidth The maximum width of the histogram bars.
+* @param out The output stream to which the histogram is printed.
+*/
 public class Histogram {
 
     public static void main(String[] args) {
